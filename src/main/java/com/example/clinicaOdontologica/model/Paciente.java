@@ -1,15 +1,53 @@
 package com.example.clinicaOdontologica.model;
 
-public class Paciente {
-    private String calle;
-    private int altura;
-    private String localidad;
-    private int id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-    public Paciente(String calle, int altura, String localidad, int id) {
-        this.calle = calle;
-        this.altura = altura;
-        this.localidad = localidad;
+@Entity
+public class Paciente {
+    private String nombre;
+    private String apellido;
+    private Domicilio domicilio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    public Paciente(){}
+
+    public Paciente(String nombre, String apellido, Domicilio domicilio, Long id) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.domicilio = domicilio;
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
