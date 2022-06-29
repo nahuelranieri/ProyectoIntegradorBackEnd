@@ -1,0 +1,33 @@
+PAQUETES
+
+Controller
+OdontologoController
+PacienteController
+TurnoController
+
+Model
+Odontologo
+Paciente
+Turno
+Domicilio
+//para la capa de seguridad
+AppUser
+AppUserRole (es un enumerate)
+
+repository
+DomicilioRepository
+OdontologoRepository
+PacienteRepository
+TurnoRepository
+//para la capa de seguridad
+UserRepository
+
+Service
+DomicilioService
+OdontologoService
+PacienteService
+TurnoService
+
+util
+
+resources> static >js y htmls
