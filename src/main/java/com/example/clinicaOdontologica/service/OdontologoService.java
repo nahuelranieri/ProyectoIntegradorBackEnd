@@ -2,7 +2,6 @@ package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.model.Odontologo;
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,22 +9,30 @@ import java.util.List;
 @Service
 public class OdontologoService {
 
-    @Autowired
+
     private IOdontologoRepository iOdontologoRepository;
 
-    public void crearOdontologo (Odontologo odontologo){
-        iOdontologoRepository.save(odontologo);
+    //Utilizo la inyeccion por constructor en vez del @Autowired
+    public OdontologoService(IOdontologoRepository iOdontologoRepository) {
+        this.iOdontologoRepository = iOdontologoRepository;
     }
 
-    public Odontologo buscarOdontologo (Long id){
-         iOdontologoRepository.findById(id);
+    public Odontologo crear (Odontologo o){
+        iOdontologoRepository.save(o);
+        return o;
     }
 
-    public List<Odontologo> listarOdontologos(){
-        iOdontologoRepository.findAll();
+    public Odontologo buscar (Long id){
+        //En el caso de no se encuentre un odontologo con el id deseado se devuelve un nulo.
+        return iOdontologoRepository.findById(id).orElseGet(null);
+
     }
 
-    public void eliminarOdontologo (Long id){
+    public List<Odontologo> listar(){
+        return iOdontologoRepository.findAll();
+    }
+
+    public void eliminar (Long id){
         iOdontologoRepository.deleteById(id);
     }
 
