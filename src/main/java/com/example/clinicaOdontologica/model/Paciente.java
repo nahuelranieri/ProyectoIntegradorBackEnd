@@ -1,14 +1,14 @@
 package com.example.clinicaOdontologica.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Pacientes")
 public class Paciente {
     private String nombre;
     private String apellido;
+    @OneToOne
+    @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

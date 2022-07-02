@@ -1,9 +1,9 @@
 package com.example.clinicaOdontologica.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Odontologos")
 public class Odontologo {
     private String nombre;
     private String apellido;

@@ -1,7 +1,6 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.model.Paciente;
-import com.example.clinicaOdontologica.repository.IOdontologoRepository;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +16,24 @@ public class PacienteService {
         this.iPacienteRepository = iPacienteRepository;
     }
 
-    public void crearPaciente (Paciente p){
+    public Paciente crear(Paciente p){
+
         iPacienteRepository.save(p);
+        return p;
     }
 
-    public Paciente buscarPaciente (Long id){
+    public Paciente buscar (Long id){
+
         return iPacienteRepository.findById(id).orElseGet(null);
     }
 
-    public List<Paciente> listarPaciente(){
+    public List<Paciente> listar(){
+
         return iPacienteRepository.findAll();
     }
 
-    public void eliminarPaciente (Long id){
+    public void eliminar (Long id){
+
         iPacienteRepository.deleteById(id);
     }
 }

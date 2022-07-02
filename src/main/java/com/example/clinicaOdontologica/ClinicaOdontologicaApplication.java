@@ -12,8 +12,5 @@ public class ClinicaOdontologicaApplication {
 		SpringApplication.run(ClinicaOdontologicaApplication.class, args);
 	}
 
-	@GetMapping
-	public String holaMundo(){
-		return "holaMundo";
-	}
+
 }

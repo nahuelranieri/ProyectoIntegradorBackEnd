@@ -1,10 +1,8 @@
 package com.example.clinicaOdontologica.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "Domicilio")
 public class Domicilio {
     private String calle;
     private int altura;
@@ -13,6 +11,13 @@ public class Domicilio {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE) //???
     private Long id;
+    @OneToOne(mappedBy = "domicilio")
+    private Paciente paciente;
+
+    //@OneToOne(mappedBy = "domicilio"); me tiran error
+    //private Paciente paciente;
+
+
 
     public Domicilio(String calle, int altura, String localidad, String provincia, Long id) {
         this.calle = calle;
@@ -21,6 +26,11 @@ public class Domicilio {
         this.provincia = provincia;
         this.id = id;
     }
+
+
+
+
+
 
     public Domicilio() {} //???
 
