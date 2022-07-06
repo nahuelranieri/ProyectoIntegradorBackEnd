@@ -1,3 +1,4 @@
+
 package com.example.clinicaOdontologica.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -5,20 +6,32 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Turnos")
 public class Turno {
-    private Paciente paciente;
-    private Odontologo odontologo;
-    private LocalDateTime fechaHora;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="paciente_id", nullable = false)
+    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "odontologo_id", nullable = false)
+    private Odontologo odontologo;
+    private LocalDateTime fecha;
 
     public Turno() {
     }
 
-    public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fechaHora, Long id) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDateTime fecha) {
+        this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fechaHora = fechaHora;
+        this.fecha = fecha;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -38,16 +51,11 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
+    public LocalDateTime getFecha() {
+        return fecha;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
-
-    public Long getId() {
-        return id;
-    }
-
 }

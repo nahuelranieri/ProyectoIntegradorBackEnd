@@ -1,40 +1,51 @@
 package com.example.clinicaOdontologica.controller;
 
+import com.example.clinicaOdontologica.DTO.PacienteDTO;
 import com.example.clinicaOdontologica.model.Paciente;
-import com.example.clinicaOdontologica.service.PacienteService;
+import com.example.clinicaOdontologica.service.IPacienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
 @RequestMapping("/pacientes")
 public class PacienteController {
 
-    private PacienteService pacienteService;
-
-    //Utilizo la inyeccion por constructor en vez del @Autowired
-    public PacienteController(PacienteService pacienteService) {
-        this.pacienteService = pacienteService;
-    }
+    @Autowired
+    IPacienteService iPacienteService;
 
     @PostMapping
-    public Paciente crearPaciente(@RequestBody Paciente p){
-        return pacienteService.crear(p);
-    }
-
-    @PostMapping
-    public List<Paciente> listarPacientes(){
-        return pacienteService.listar();
+    public ResponseEntity<?> crearPaciente(@RequestBody PacienteDTO pacienteDTO){
+        iPacienteService.crearPaciente(pacienteDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Paciente buscarPaciente(@PathVariable Long id){
-        return pacienteService.buscar(id);
+    public PacienteDTO getPaciente(@PathVariable Long id){
+        return iPacienteService.leerPaciente(id);
     }
 
-    @DeleteMapping("{/id}")
-    public String eliminarPaciente(@PathVariable Long id){
-        pacienteService.eliminar(id);
-        return "¡Paciente Eliminado!";
+    @PutMapping
+    public ResponseEntity<?> modificarPaciente(@RequestBody PacienteDTO pacienteDTO){
+        iPacienteService.modificarPaciente(pacienteDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> borrarPaciente(@PathVariable Long id){
+        iPacienteService.eliminarPaciente(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public Collection<PacienteDTO> listarTodosPacientes(){
+        return iPacienteService.getTodos();
+    }
+
+
+
 }

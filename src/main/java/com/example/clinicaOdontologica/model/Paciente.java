@@ -1,25 +1,29 @@
 package com.example.clinicaOdontologica.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Pacientes")
 public class Paciente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)//se autogenera el id
+    private Long id;
     private String nombre;
     private String apellido;
-    @OneToOne
-    @JoinColumn(name = "domicilio_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//si borro un paciente borro tambien su domicilio
+    //@JoinColumn(name = "domicilio_id", referencedColumnName = "id")
     private Domicilio domicilio;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @OneToMany(mappedBy = "paciente")
+    private Set<Turno> turnos;
 
     public Paciente(){}
 
-    public Paciente(String nombre, String apellido, Domicilio domicilio, Long id) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.domicilio = domicilio;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,7 +51,11 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public Long getId() {
-        return id;
+    public Set<Turno> getTurnos() {
+        return turnos;
+    }
+
+    public void setTurnos(Set<Turno> turnos) {
+        this.turnos = turnos;
     }
 }

@@ -1,23 +1,22 @@
 package com.example.clinicaOdontologica.model;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Domicilio")
+@Table(name = "Domicilios")
 public class Domicilio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) //???
+    private Long id;
     private String calle;
     private int altura;
     private String localidad;
     private String provincia;
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) //???
-    private Long id;
+    //@OneToMany(mappedBy = "pacientes", fetch = FetchType.LAZY);
     @OneToOne(mappedBy = "domicilio")
-    private Paciente paciente;
+    private Paciente pacientes;
 
-    //@OneToOne(mappedBy = "domicilio"); me tiran error
-    //private Paciente paciente;
-
-
+    public Domicilio() {} //Hibernate me pide un constructor por default
 
     public Domicilio(String calle, int altura, String localidad, String provincia, Long id) {
         this.calle = calle;
@@ -27,12 +26,13 @@ public class Domicilio {
         this.id = id;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-
-
-
-
-    public Domicilio() {} //???
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCalle() {
         return calle;
@@ -66,11 +66,11 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public Long getId() {
-        return id;
+    public Paciente getPacientes() {
+        return pacientes;
     }
 
-    /*public void setId(Long id) {
-        this.id = id;
-    }*/ //no lo usamos al setter id
+    public void setPacientes(Paciente pacientes) {
+        this.pacientes = pacientes;
+    }
 }
