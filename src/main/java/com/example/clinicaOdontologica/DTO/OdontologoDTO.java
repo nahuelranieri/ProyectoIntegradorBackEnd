@@ -1,28 +1,26 @@
 package com.example.clinicaOdontologica.DTO;
 
+import com.example.clinicaOdontologica.model.Domicilio;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//Nos sirve para indicarle a jackson que ignore el
+// resto de atributos que tiene la entidad.
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OdontologoDTO {
     private Long id;
     private String nombre;
     private String apellido;
-    @JsonIgnoreProperties(ignoreUnknown = true) //Nos sirve para indicarle a jackson que ignore el resto de atributos que tiene la entidad.
+
+    public OdontologoDTO() {}
+
     public OdontologoDTO(Long id, String nombre, String apellido) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public OdontologoDTO() {
-
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -33,7 +31,7 @@ public class OdontologoDTO {
         this.nombre = nombre;
     }
 
-    public String getApellido(String apellido) {
+    public String getApellido() {
         return apellido;
     }
 

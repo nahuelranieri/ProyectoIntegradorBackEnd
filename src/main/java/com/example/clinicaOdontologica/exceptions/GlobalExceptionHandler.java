@@ -1,4 +1,4 @@
-package com.example.clinicaOdontologica;
+package com.example.clinicaOdontologica.exceptions;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;

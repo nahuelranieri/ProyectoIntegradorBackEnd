@@ -1,14 +1,12 @@
 package com.example.clinicaOdontologica.service;
 
-import com.example.clinicaOdontologica.model.Turno;
-
-import java.util.List;
-import java.util.Optional;
+import com.example.clinicaOdontologica.DTO.TurnoDTO;
+import java.util.Set;
 
 public interface ITurnoService {
-    void crearTurno(Turno turno);
-    Optional<Turno> leerTurno(Long id);
-    void modificarTurno(Turno turno);
+    void crearTurno(TurnoDTO turnoDTO);
+    TurnoDTO leerTurno(Long id);
+    void modificarTurno(TurnoDTO turnoDTO);
     void eliminarTurno(Long id);
-    List<Turno> getTodos();
+    Set<TurnoDTO> getTodos();
 }

@@ -1,5 +1,7 @@
 package com.example.clinicaOdontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,12 +10,14 @@ import java.util.Set;
 @Table(name = "Odontologos")
 public class Odontologo {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)//???
+    @SequenceGenerator(name = "odontologo_sequence", sequenceName = "odontologo_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "odontologo_sequence")//???
     private Long id;
     private String nombre;
     private String apellido;
     private Long matricula;
     @OneToMany(mappedBy = "odontologo")
+    @JsonIgnore
     private Set<Turno> turnos;
 
     public Odontologo(){}
@@ -29,9 +33,7 @@ public class Odontologo {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public String getNombre() {
         return nombre;

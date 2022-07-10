@@ -1,5 +1,7 @@
 package com.example.clinicaOdontologica.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -7,25 +9,36 @@ import java.util.Set;
 @Table(name = "Pacientes")
 public class Paciente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)//se autogenera el id
+    @SequenceGenerator(name = "paciente_sequence", sequenceName = "paciente_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paciente_sequence")//se autogenera el id
     private Long id;
     private String nombre;
     private String apellido;
-    @OneToOne(cascade = CascadeType.REMOVE,fetch = FetchType.LAZY)//si borro un paciente borro tambien su domicilio
-    //@JoinColumn(name = "domicilio_id", referencedColumnName = "id")
+    private Long DNI;
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
+
     @OneToMany(mappedBy = "paciente")
+    @JsonIgnore
     private Set<Turno> turnos;
 
     public Paciente(){}
+
+    public Paciente(Long id, String nombre, String apellido, Long DNI, Domicilio domicilio, Set<Turno> turnos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.DNI = DNI;
+        this.domicilio = domicilio;
+        this.turnos = turnos;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -41,6 +54,14 @@ public class Paciente {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public Long getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(Long DNI) {
+        this.DNI = DNI;
     }
 
     public Domicilio getDomicilio() {

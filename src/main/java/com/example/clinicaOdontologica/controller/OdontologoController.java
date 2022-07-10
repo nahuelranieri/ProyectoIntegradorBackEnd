@@ -32,13 +32,13 @@ public class OdontologoController {
     @PutMapping
     public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO){
         iOdontologoService.modificarOdontologo(odontologoDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK );
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> borrarOdontologo(@PathVariable Long id){
         iOdontologoService.eliminarOdontologo(id);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(HttpStatus.OK + ". El odontologo con el id:" + id + " ha sido eliminado con exito.");
     }
 
     @GetMapping

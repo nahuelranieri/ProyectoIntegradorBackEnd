@@ -1,37 +1,39 @@
 package com.example.clinicaOdontologica.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Domicilios")
+//@Table(name = "Domicilios")
 public class Domicilio {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) //???
+    @SequenceGenerator(name = "domicilio_sequence", sequenceName = "domicilio_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "domicilio_sequence")
     private Long id;
     private String calle;
     private int altura;
     private String localidad;
     private String provincia;
-    //@OneToMany(mappedBy = "pacientes", fetch = FetchType.LAZY);
-    @OneToOne(mappedBy = "domicilio")
-    private Paciente pacientes;
+    //@JoinColumn(name = "paciente_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "domicilio")
+    @JsonIgnore
+    private Set<Paciente> pacientes;
 
-    public Domicilio() {} //Hibernate me pide un constructor por default
+    public Domicilio() {
+    } //Hibernate me pide un constructor por default
 
-    public Domicilio(String calle, int altura, String localidad, String provincia, Long id) {
+    public Domicilio(Long id, String calle, int altura, String localidad, String provincia, Set<Paciente> pacientes) {
+        this.id = id;
         this.calle = calle;
         this.altura = altura;
         this.localidad = localidad;
         this.provincia = provincia;
-        this.id = id;
+        this.pacientes = pacientes;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCalle() {
@@ -66,11 +68,11 @@ public class Domicilio {
         this.provincia = provincia;
     }
 
-    public Paciente getPacientes() {
+    public Set<Paciente> getPacientes() {
         return pacientes;
     }
 
-    public void setPacientes(Paciente pacientes) {
+    public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
 }

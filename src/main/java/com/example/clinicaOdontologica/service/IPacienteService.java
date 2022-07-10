@@ -1,8 +1,7 @@
 package com.example.clinicaOdontologica.service;
 
-import com.example.clinicaOdontologica.DTO.OdontologoDTO;
-import com.example.clinicaOdontologica.DTO.PacienteDTO;
 
+import com.example.clinicaOdontologica.DTO.PacienteDTO;
 import java.util.Set;
 
 public interface IPacienteService {
