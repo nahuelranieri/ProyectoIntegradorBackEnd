@@ -21,6 +21,8 @@ public class Turno {
     private Odontologo odontologo;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    //Con el pattern de esa forma los milisegundos son opcionales
+    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]") de esta forma no puedo realizar el metodo get
     private LocalDateTime fecha;
 
     public Turno() {

@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.Paciente;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ class PacienteServiceTest {
     private IPacienteService iPacienteService;
 
     @Test
-    void testCrearPaciente() {
+    void testCrearPaciente() throws ResourceNotFoundException {
         PacienteDTO pacienteDTO = new PacienteDTO();
         pacienteDTO.setNombre("Nahuel");
         pacienteDTO.setApellido("Ranieri");

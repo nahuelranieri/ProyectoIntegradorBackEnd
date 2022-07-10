@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.DTO.OdontologoDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ class OdontologoServiceTest {
     private IOdontologoService iOdontologoService;
 
     @Test
-    public void testCrearOdontologo(){
+    public void testCrearOdontologo() throws ResourceNotFoundException {
         OdontologoDTO odontologoDTO = new OdontologoDTO();
         odontologoDTO.setNombre("Jose");
         odontologoDTO.setApellido("Ranieri");

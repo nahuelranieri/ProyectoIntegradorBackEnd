@@ -2,6 +2,7 @@ package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.DTO.OdontologoDTO;
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.IOdontologoService;
 import com.example.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,13 @@ public class OdontologoController {
     IOdontologoService iOdontologoService;
 
     @PostMapping
-    public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO){
+    public ResponseEntity<String> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO){
         iOdontologoService.crearOdontologo(odontologoDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok("Odontologo creado con exito");
     }
 
     @GetMapping("/{id}")
-    public OdontologoDTO getOdontologo(@PathVariable Long id){
+    public OdontologoDTO getOdontologo(@PathVariable Long id) throws ResourceNotFoundException{
         return iOdontologoService.leerOdontologo(id);
     }
 
@@ -36,9 +37,9 @@ public class OdontologoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarOdontologo(@PathVariable Long id){
+    public ResponseEntity<String> borrarOdontologo(@PathVariable Long id) throws ResourceNotFoundException {
         iOdontologoService.eliminarOdontologo(id);
-        return ResponseEntity.ok(HttpStatus.OK + ". El odontologo con el id:" + id + " ha sido eliminado con exito.");
+        return ResponseEntity.ok("El odontologo con el id:" + id + " ha sido eliminado con exito.");
     }
 
     @GetMapping

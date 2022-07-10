@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.DTO.TurnoDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,13 @@ public class TurnoController {
     ITurnoService iTurnoService;
 
     @PostMapping
-    public ResponseEntity<?> crearTurno(@RequestBody TurnoDTO turnoDTO){
+    public ResponseEntity<?> crearTurno(@RequestBody TurnoDTO turnoDTO) throws ResourceNotFoundException{
         iTurnoService.crearTurno(turnoDTO);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public TurnoDTO getTurno(@PathVariable Long id){
+    public TurnoDTO getTurno(@PathVariable Long id) throws ResourceNotFoundException{
         return iTurnoService.leerTurno(id);
     }
 
@@ -34,9 +35,9 @@ public class TurnoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarTurno(@PathVariable Long id){
+    public ResponseEntity<String> borrarTurno(@PathVariable Long id){
         iTurnoService.eliminarTurno(id);
-        return ResponseEntity.ok(HttpStatus.OK + ". El Turno con el id:" + id + " ha sido eliminado con exito.");
+        return ResponseEntity.ok("El Turno con el id:" + id + " ha sido eliminado con exito.");
     }
 
     @GetMapping

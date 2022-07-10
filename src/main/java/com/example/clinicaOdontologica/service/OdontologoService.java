@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.DTO.OdontologoDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.Odontologo;
 import com.example.clinicaOdontologica.repository.IOdontologoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,17 +49,21 @@ public class OdontologoService implements IOdontologoService  {
     }
 
     @Override
-    public OdontologoDTO leerOdontologo(Long id) {
+    public OdontologoDTO leerOdontologo(Long id) throws ResourceNotFoundException {
         Optional<Odontologo> odontologo = iOdontologoRepository.findById(id);//con Optional<> podemos consultar si el objeto que nos devuelvo es o no null
         OdontologoDTO odontologoDTO = null;
         if(odontologo.isPresent())
             odontologoDTO = mapper.convertValue(odontologo, OdontologoDTO.class);
+        else
+            throw new ResourceNotFoundException("no existe un paciente con el id: " +id);
         return odontologoDTO;
     }
 
 
     @Override
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
+        if(leerOdontologo(id)==null)
+            throw new ResourceNotFoundException("no existe un paciente con el id: " +id);
         iOdontologoRepository.deleteById(id);
     }
 

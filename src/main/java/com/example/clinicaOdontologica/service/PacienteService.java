@@ -2,6 +2,8 @@ package com.example.clinicaOdontologica.service;
 
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
+import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,23 +46,28 @@ public class PacienteService implements IPacienteService{
     }
 
     @Override
-    public void modificarPaciente(PacienteDTO pacienteDTO) {
+    public void modificarPaciente(PacienteDTO pacienteDTO)  {
         guardarPaciente(pacienteDTO);
     }
 
     @Override
-    public PacienteDTO leerPaciente(Long id) {
-        Optional<Paciente> paciente = iPacienteRepository.findById(id);//con Optional<> podemos consultar si el objeto que nos devuelvo es o no null
+    public PacienteDTO leerPaciente(Long id) throws ResourceNotFoundException {
+        //con Optional<> podemos consultar si el objeto que nos devuelvo es o no null
+        Optional<Paciente> paciente = iPacienteRepository.findById(id);
         PacienteDTO pacienteDTO = null;
         if(paciente.isPresent())
             pacienteDTO = mapper.convertValue(paciente, PacienteDTO.class);
+        else
+            throw new ResourceNotFoundException("no existe un paciente con el id: " +id);
         return pacienteDTO;
     }
 
 
 
     @Override
-    public void eliminarPaciente(Long id) {
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
+        if(leerPaciente(id)==null)
+            throw new ResourceNotFoundException("no existe un paciente con el id: " +id);
         iPacienteRepository.deleteById(id);
 
     }

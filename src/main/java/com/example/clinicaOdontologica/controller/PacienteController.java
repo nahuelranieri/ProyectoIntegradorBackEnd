@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,37 +18,32 @@ public class PacienteController {
     IPacienteService iPacienteService;
 
     @PostMapping
-    public ResponseEntity<?> crearPaciente(@RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<String> crearPaciente(@RequestBody PacienteDTO pacienteDTO) {
         iPacienteService.crearPaciente(pacienteDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok("Paciente creado con exito");
     }
 
     @GetMapping("/{id}")
-    public PacienteDTO getPaciente(@PathVariable Long id){
+    public PacienteDTO getPaciente(@PathVariable Long id) throws ResourceNotFoundException{
         return iPacienteService.leerPaciente(id);
     }
 
     @GetMapping
-    public Collection<PacienteDTO> listarTodosPacientes(){
+    public Collection<PacienteDTO> listarTodosPacientes()  {
         return iPacienteService.getTodos();
     }
 
     @PutMapping
-    public ResponseEntity<?> modificarPaciente(@RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<String> modificarPaciente(@RequestBody PacienteDTO pacienteDTO) {
         iPacienteService.modificarPaciente(pacienteDTO);
-        return ResponseEntity.ok(HttpStatus.OK );
+        return ResponseEntity.ok("Paciente modificado con exito.");
     }
 
-    @PutMapping("/{id}")
-    public modificarPaciente(@PathVariable Long id){
-        iPacienteService.modificarPaciente(id);
-        return ResponseEntity.ok(HttpStatus.OK );
-    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> borrarPaciente(@PathVariable Long id){
+    public ResponseEntity<String> borrarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         iPacienteService.eliminarPaciente(id);
-        return ResponseEntity.ok(HttpStatus.OK + ". El paciente con el id:" + id + " ha sido eliminado con exito.");
+        return ResponseEntity.ok("El paciente con el id:" + id + " ha sido eliminado con exito.");
     }
 
 

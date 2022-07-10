@@ -21,6 +21,7 @@ public class Paciente {
     private Domicilio domicilio;
 
     @OneToMany(mappedBy = "paciente")
+    //@JoinColumn(name = "turno_id")
     @JsonIgnore
     private Set<Turno> turnos;
 

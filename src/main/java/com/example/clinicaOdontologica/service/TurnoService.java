@@ -4,6 +4,7 @@ package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
 import com.example.clinicaOdontologica.DTO.TurnoDTO;
+import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.model.Turno;
 import com.example.clinicaOdontologica.repository.ITurnoRepository;
@@ -40,7 +41,9 @@ public class TurnoService implements ITurnoService{
     }
 
     @Override
-    public void crearTurno(TurnoDTO turnoDTO) {
+    public void crearTurno(TurnoDTO turnoDTO) throws ResourceNotFoundException {
+        if(turnoDTO.getFecha()==null)
+            throw new ResourceNotFoundException("debe incluir una fecha en el formato yyyy-MM-dd'T'HH:mm:ss");
         guardarTurno(turnoDTO);
         //iTurnoRepository.save(turnoDTO);
     }
@@ -52,17 +55,21 @@ public class TurnoService implements ITurnoService{
     }
 
     @Override
-    public TurnoDTO leerTurno(Long id) {
+    public TurnoDTO leerTurno(Long id) throws ResourceNotFoundException {
         Optional<Turno> turno = iTurnoRepository.findById(id);//con Optional<> podemos consultar si el objeto que nos devuelvo es o no null
         TurnoDTO turnoDTO = null;
         if(turno.isPresent())
             turnoDTO = mapper.convertValue(turno, TurnoDTO.class);
+        else
+            throw new ResourceNotFoundException("no existe un turno con el id: " +id);
         return turnoDTO;
         //return iTurnoRepository.findById(id);
     }
 
     @Override
     public void eliminarTurno(Long id) {
+        /*if(leerTurno(id)==null)
+            throw new ResourceNotFoundException("no existe un turno con el id: " +id);*/
         iTurnoRepository.deleteById(id);
 
     }
