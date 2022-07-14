@@ -2,10 +2,9 @@ package com.example.clinicaOdontologica.service;
 
 
 
-import com.example.clinicaOdontologica.DTO.PacienteDTO;
+
 import com.example.clinicaOdontologica.DTO.TurnoDTO;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.model.Turno;
 import com.example.clinicaOdontologica.repository.ITurnoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,20 +22,14 @@ public class TurnoService implements ITurnoService{
     @Autowired
     private ITurnoRepository iTurnoRepository;
 
-    //Utilizo la inyeccion por constructor en vez del @Autowired
-
-    /*public TurnoService(ITurnoRepository iTurnoRepository) {
-        this.iTurnoRepository = iTurnoRepository;
-    }*/
-
     @Autowired
     ObjectMapper mapper;
 
     private void guardarTurno(TurnoDTO turnoDTO) {
-        //el metodo save de PacienteRepository sirve tanto para crear desde 0, como para modificar.
+        //el metodo save de TurnoRepository sirve tanto para crear desde 0, como para modificar.
         // Si id = 0 lo agrega como nuevo, si es diferente de 0 va a modificar el valor.
         //De esta manera reutilizo codigo
-        Turno turno = mapper.convertValue(turnoDTO, Turno.class);//Nos convierte odontologo dto a un objeto del tipo odontologo
+        Turno turno = mapper.convertValue(turnoDTO, Turno.class);//Nos convierte turno dto a un objeto del tipo turno
         iTurnoRepository.save(turno);
     }
 
@@ -67,20 +60,20 @@ public class TurnoService implements ITurnoService{
     }
 
     @Override
-    public void eliminarTurno(Long id) {
-        /*if(leerTurno(id)==null)
-            throw new ResourceNotFoundException("no existe un turno con el id: " +id);*/
+    public void eliminarTurno(Long id) throws ResourceNotFoundException {
+        if(leerTurno(id)==null)
+            throw new ResourceNotFoundException("no existe un turno con el id: " +id);
         iTurnoRepository.deleteById(id);
 
     }
 
     @Override
     public Set<TurnoDTO> getTodos() {
-        //El List me devuelve una lista de pacientes donde cada objeto es del tipo Paciente pero yo
-        //tengo que devolver un Set PERO con objetos PacienteDTO.
+        //El List me devuelve una lista de turnos donde cada objeto es del tipo Turno pero yo
+        //tengo que devolver un Set PERO con objetos TurnoDTO.
         List<Turno> turnos = iTurnoRepository.findAll();
         Set<TurnoDTO> turnoDTO = new HashSet<>();
-        //Recorro la lista de pacientes de la coleccion de pacientes y lleno otro Set donde a cada uno de los
+        //Recorro la lista de turnos de la coleccion de turnos y lleno otro Set donde a cada uno de los
         //objetos paciente lo transformo en un PacienteDTO.
         for (Turno turno : turnos){
             turnoDTO.add(mapper.convertValue(turno, TurnoDTO.class));

@@ -2,7 +2,6 @@ package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
-import com.example.clinicaOdontologica.model.Paciente;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Set;
 
-@JsonIgnoreProperties(ignoreUnknown = true) //Nos sirve para indicarle a jackson que ignore el resto de atributos que tiene la entidad.
+//Nos sirve para indicarle a jackson que ignore el
+// resto de atributos que tiene la entidad.
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
     private Long id;
     private String nombre;

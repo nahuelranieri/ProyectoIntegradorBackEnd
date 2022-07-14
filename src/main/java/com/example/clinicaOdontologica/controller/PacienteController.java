@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/pacientes")
 public class PacienteController {
 
@@ -18,7 +19,7 @@ public class PacienteController {
     IPacienteService iPacienteService;
 
     @PostMapping
-    public ResponseEntity<String> crearPaciente(@RequestBody PacienteDTO pacienteDTO) {
+    public ResponseEntity<String> crearPaciente(@RequestBody PacienteDTO pacienteDTO) throws ResourceNotFoundException{
         iPacienteService.crearPaciente(pacienteDTO);
         return ResponseEntity.ok("Paciente creado con exito");
     }
@@ -34,7 +35,14 @@ public class PacienteController {
     }
 
     @PutMapping
-    public ResponseEntity<String> modificarPaciente(@RequestBody PacienteDTO pacienteDTO) {
+    public ResponseEntity<?> modificarPaciente(@RequestBody PacienteDTO pacienteDTO) throws ResourceNotFoundException {
+
+        /*if (iPacienteService.leerPaciente(pacienteDTO.getId())!=null) {
+            iPacienteService.modificarPaciente(pacienteDTO);
+            return ResponseEntity.ok("Paciente modificado con exito.");
+        }else
+            throw new ResourceNotFoundException("no existe un paciente con el id");
+        return;*/
         iPacienteService.modificarPaciente(pacienteDTO);
         return ResponseEntity.ok("Paciente modificado con exito.");
     }
@@ -45,9 +53,5 @@ public class PacienteController {
         iPacienteService.eliminarPaciente(id);
         return ResponseEntity.ok("El paciente con el id:" + id + " ha sido eliminado con exito.");
     }
-
-
-
-
 
 }

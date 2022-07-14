@@ -20,11 +20,6 @@ public class OdontologoService implements IOdontologoService  {
     @Autowired
     private IOdontologoRepository iOdontologoRepository;
 
-    //Utilizo la inyeccion por constructor en vez del @Autowired
-    /*public OdontologoService(IOdontologoRepository iOdontologoRepository) {
-        this.iOdontologoRepository = iOdontologoRepository;
-    }*/
-
     @Autowired
     ObjectMapper mapper;
 

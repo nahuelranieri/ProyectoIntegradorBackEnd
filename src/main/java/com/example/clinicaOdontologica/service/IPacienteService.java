@@ -8,9 +8,9 @@ import java.util.Set;
 
 public interface IPacienteService {
 
-    void crearPaciente(PacienteDTO pacienteDTO);
+    void crearPaciente(PacienteDTO pacienteDTO) throws ResourceNotFoundException;
     PacienteDTO leerPaciente(Long id) throws ResourceNotFoundException;
-    void modificarPaciente(PacienteDTO pacienteDTO);
+    void modificarPaciente(PacienteDTO pacienteDTO) throws ResourceNotFoundException;
     void eliminarPaciente(Long id) throws ResourceNotFoundException;
     Set<PacienteDTO> getTodos();
 }

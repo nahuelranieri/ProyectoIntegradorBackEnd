@@ -9,6 +9,6 @@ public interface ITurnoService {
     void crearTurno(TurnoDTO turnoDTO) throws ResourceNotFoundException;
     TurnoDTO leerTurno(Long id) throws ResourceNotFoundException;
     void modificarTurno(TurnoDTO turnoDTO);
-    void eliminarTurno(Long id) ;
+    void eliminarTurno(Long id) throws ResourceNotFoundException;
     Set<TurnoDTO> getTodos();
 }

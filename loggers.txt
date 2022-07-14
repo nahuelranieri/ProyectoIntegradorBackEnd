@@ -45,3 +45,35 @@
 [10-07-2022 20:28:28] [ ERROR] [GlobalExceptionHandler:17] Cannot deserialize value of type `java.time.LocalDateTime` from String "2020-04-15T10:45:00.000.00.0": Failed to deserialize java.time.LocalDateTime: (java.time.format.DateTimeParseException) Text '2020-04-15T10:45:00.000.00.0' could not be parsed, unparsed text found at index 23
  at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.example.clinicaOdontologica.DTO.TurnoDTO["fecha"])
 [10-07-2022 20:31:57] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 4
+[11-07-2022 15:03:18] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 4
+[11-07-2022 15:16:15] [ ERROR] [GlobalExceptionHandler:17] Cannot deserialize value of type `java.time.LocalDateTime` from String "2020-04-13T10:45:07.719.71.7": Failed to deserialize java.time.LocalDateTime: (java.time.format.DateTimeParseException) Text '2020-04-13T10:45:07.719.71.7' could not be parsed, unparsed text found at index 23
+ at [Source: UNKNOWN; byte offset: #UNKNOWN] (through reference chain: com.example.clinicaOdontologica.DTO.TurnoDTO["fecha"])
+[11-07-2022 16:51:07] [ ERROR] [GlobalExceptionHandler:17] could not execute statement; SQL [n/a]; constraint [FKQTJ6T7MULC2JMFKV92X4CTKWH]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement
+[11-07-2022 16:52:09] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 1
+[11-07-2022 18:07:31] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 3
+[11-07-2022 18:13:10] [ ERROR] [GlobalExceptionHandler:17] not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo
+[11-07-2022 18:44:06] [ ERROR] [GlobalExceptionHandler:17] not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo
+[11-07-2022 18:44:24] [ ERROR] [GlobalExceptionHandler:17] not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo; nested exception is org.hibernate.PropertyValueException: not-null property references a null or transient value : com.example.clinicaOdontologica.model.Turno.odontologo
+[11-07-2022 18:58:40] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:43:32] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:44:17] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:44:31] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:44:31] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:44:32] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:47:36] [ ERROR] [GlobalExceptionHandler:17] Request method 'PUT' not supported
+[11-07-2022 19:50:19] [ ERROR] [GlobalExceptionHandler:17] The given id must not be null!; nested exception is java.lang.IllegalArgumentException: The given id must not be null!
+[11-07-2022 20:02:14] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 6
+[11-07-2022 20:02:22] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 6
+[11-07-2022 20:14:30] [ ERROR] [GlobalExceptionHandler:17] JSON parse error: No content to map due to end-of-input; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input
+ at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 1, column: 0]
+[11-07-2022 20:20:19] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 5
+[11-07-2022 20:20:42] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 6
+[11-07-2022 20:25:42] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 5
+[11-07-2022 20:26:06] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 6
+[11-07-2022 20:42:03] [ ERROR] [GlobalExceptionHandler:17] debe incluir una fecha en el formato yyyy-MM-dd'T'HH:mm:ss
+[11-07-2022 21:47:06] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 5
+[11-07-2022 21:47:15] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 6
+[11-07-2022 21:48:18] [ ERROR] [GlobalExceptionHandler:17] no existe un paciente con el id: 5
+[11-07-2022 21:48:54] [ ERROR] [GlobalExceptionHandler:17] debe incluir una fecha en el formato yyyy-MM-dd'T'HH:mm:ss
+[11-07-2022 21:49:03] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 2
+[11-07-2022 21:51:09] [ ERROR] [GlobalExceptionHandler:17] no existe un turno con el id: 2

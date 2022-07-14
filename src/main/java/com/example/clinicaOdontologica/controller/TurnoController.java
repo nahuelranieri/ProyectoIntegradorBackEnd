@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/turnos")
 public class TurnoController {
 
@@ -20,7 +21,7 @@ public class TurnoController {
     @PostMapping
     public ResponseEntity<?> crearTurno(@RequestBody TurnoDTO turnoDTO) throws ResourceNotFoundException{
         iTurnoService.crearTurno(turnoDTO);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok("Turno asignado correctamente");
     }
 
     @GetMapping("/{id}")
@@ -35,7 +36,7 @@ public class TurnoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> borrarTurno(@PathVariable Long id){
+    public ResponseEntity<String> borrarTurno(@PathVariable Long id) throws ResourceNotFoundException{
         iTurnoService.eliminarTurno(id);
         return ResponseEntity.ok("El Turno con el id:" + id + " ha sido eliminado con exito.");
     }

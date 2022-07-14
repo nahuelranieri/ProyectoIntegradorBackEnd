@@ -1,10 +1,8 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.DTO.OdontologoDTO;
-import com.example.clinicaOdontologica.DTO.PacienteDTO;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.IOdontologoService;
-import com.example.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/odontologos")
 public class OdontologoController {
 
@@ -33,7 +32,7 @@ public class OdontologoController {
     @PutMapping
     public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO){
         iOdontologoService.modificarOdontologo(odontologoDTO);
-        return ResponseEntity.ok(HttpStatus.OK );
+        return ResponseEntity.ok("Odontologo modificado con exito ");
     }
 
     @DeleteMapping("/{id}")

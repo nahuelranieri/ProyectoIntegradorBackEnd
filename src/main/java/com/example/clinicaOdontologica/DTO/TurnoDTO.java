@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
 
+//Nos sirve para indicarle a jackson que ignore el
+// resto de atributos que tiene la entidad.
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDTO {
     private Long id;

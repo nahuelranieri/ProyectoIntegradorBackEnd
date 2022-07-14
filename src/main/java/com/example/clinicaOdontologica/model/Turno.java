@@ -13,16 +13,16 @@ public class Turno {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="paciente_id", nullable = false)
+    @JoinColumn(name="paciente_id", nullable = false, referencedColumnName = "id")
     private Paciente paciente;
 
-    @ManyToOne
-    @JoinColumn(name = "odontologo_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "odontologo_id", nullable = false, referencedColumnName = "id")
     private Odontologo odontologo;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     //Con el pattern de esa forma los milisegundos son opcionales
-    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]") de esta forma no puedo realizar el metodo get
+    //@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]") //de esta forma no puedo realizar el metodo get
     private LocalDateTime fecha;
 
     public Turno() {

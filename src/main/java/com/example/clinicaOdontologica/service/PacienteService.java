@@ -2,7 +2,6 @@ package com.example.clinicaOdontologica.service;
 
 
 import com.example.clinicaOdontologica.DTO.PacienteDTO;
-import com.example.clinicaOdontologica.exceptions.GlobalExceptionHandler;
 import com.example.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.example.clinicaOdontologica.model.Paciente;
 import com.example.clinicaOdontologica.repository.IPacienteRepository;
@@ -21,17 +20,11 @@ public class PacienteService implements IPacienteService{
     @Autowired
     private IPacienteRepository iPacienteRepository;
 
-    //Utilizo la inyeccion por constructor en vez del @Autowired
-    /*
-    public PacienteService(IPacienteRepository iPacienteRepository) {
-        this.iPacienteRepository = iPacienteRepository;
-    }
-    */
 
     @Autowired
     ObjectMapper mapper;
 
-    private void guardarPaciente(PacienteDTO pacienteDTO){
+    private void guardarPaciente(PacienteDTO pacienteDTO) {
         //el metodo save de PacienteRepository sirve tanto para crear desde 0, como para modificar.
         // Si id = 0 lo agrega como nuevo, si es diferente de 0 va a modificar el valor.
         //De esta manera reutilizo codigo
@@ -42,11 +35,11 @@ public class PacienteService implements IPacienteService{
 
     @Override
     public void crearPaciente(PacienteDTO pacienteDTO) {
-        guardarPaciente(pacienteDTO);
+            guardarPaciente(pacienteDTO);
     }
 
     @Override
-    public void modificarPaciente(PacienteDTO pacienteDTO)  {
+    public void modificarPaciente(PacienteDTO pacienteDTO) {
         guardarPaciente(pacienteDTO);
     }
 

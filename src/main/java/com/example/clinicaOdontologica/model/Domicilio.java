@@ -15,13 +15,13 @@ public class Domicilio {
     private int altura;
     private String localidad;
     private String provincia;
-    //@JoinColumn(name = "paciente_id", referencedColumnName = "id")
     @OneToMany(mappedBy = "domicilio")
     @JsonIgnore
     private Set<Paciente> pacientes;
 
+    //Hibernate me pide un constructor por default
     public Domicilio() {
-    } //Hibernate me pide un constructor por default
+    }
 
     public Domicilio(Long id, String calle, int altura, String localidad, String provincia, Set<Paciente> pacientes) {
         this.id = id;
